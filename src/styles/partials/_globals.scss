@@ -1,15 +1,5 @@
 @use "sass:map";
 
-@font-face {
-  font-family: "Avenir Next";
-  src: url("./AvenirNextLTPro-Regular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "Avenir Next Bold";
-  src: url("./AvenirNextLTPro-Bold.otf") format("opentype");
-}
-
 $font-stack: "Avenir Next";
 $base-font-size-mobile: 13px; //body copy
 $base-font-size-desktop: 14px; //body copy
@@ -317,102 +307,10 @@ $secondary-alabaster: #fafafa; //Alabaster
   }
 }
 
-@mixin avatarimage() {
-  width: 36px;
-  height: 36px;
-
-  @include desktoptablet {
-    width: 40px;
-    height: 40px;
-  }
-
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: $secondary-mercury;
-
-  img {
-    height: 100%;
-  }
-}
-
-@mixin icons() {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-
-  img {
-    width: auto;
-    height: 16px;
-    @include desktoptablet {
-      height: 24px;
-    }
-    @include pagepad-container-right(0.5, 0.5);
-  }
-
-  &--secondary {
-    color: $primary-silver;
-  }
-}
-
-@mixin primarycta(
-  $bgcolor1: $primary-blue,
-  $bgcolor2: $secondary-blue,
-  $txtcolor: $primary-white
-) {
-  button {
-    background-color: $bgcolor1;
-    color: $txtcolor;
-    height: 40px;
-    letter-spacing: 1px;
-    width: 100%;
-    max-width: 100%;
-    @include pagepad-container-leftright(0.335, 0.335, 0.335, 0.335);
-
-    border-radius: 4px;
-    border: 0px;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    img {
-      width: 24px;
-      height: 20px;
-    }
-
-    span,
-    div {
-      width: 100%;
-      text-align: center;
-      @extend .style-labelsbuttons;
-    }
-
-    &:hover {
-      transform: scale(1.1);
-      background-color: $bgcolor2;
-    }
-
-    @include desktoptablet {
-      min-width: 150px;
-    }
-    @include desktop {
-      &:hover {
-        background-color: $bgcolor2;
-      }
-    }
-  }
-}
-
 //---------------------------------------------------------------------//
 .style-labelsbuttons,
 .style-sectionheader {
   text-transform: uppercase;
-}
-
-.primarycta {
-  @include primarycta;
 }
 
 * {
@@ -424,34 +322,6 @@ $secondary-alabaster: #fafafa; //Alabaster
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 25vw;
-
-  @media (prefers-reduced-motion: no-preference) {
-    &-image {
-      animation: loading-animation infinite 1s alternate;
-    }
-  }
-
-  &-image {
-    text-align: center;
-    color: $primary-silver;
-  }
-
-  @keyframes loading-animation {
-    from {
-      transform: scale(2);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
 }
 
 section {
