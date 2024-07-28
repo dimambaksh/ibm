@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: "Avenir Next";
-  src: url("AvenirNextLTPro-Regular.otf") format("opentype");
+  src: url("./AvenirNextLTPro-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Avenir Next Bold";
-  src: url("AvenirNextLTPro-Bold.otf") format("opentype");
+  src: url("./AvenirNextLTPro-Bold.otf") format("opentype");
 }
 
 $font-stack: "Avenir Next";
