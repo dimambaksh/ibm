@@ -1,6 +1,6 @@
 @use "sass:map";
 
-$font-stack: "Avenir Next";
+$font-stack: "Avenir Next, Arial";
 $base-font-size-mobile: 13px; //body copy
 $base-font-size-desktop: 14px; //body copy
 
@@ -412,4 +412,11 @@ input {
       @include pagepad-container-left(1, 1);
     }
   }
+}
+
+.pageheader{
+    &__article {
+        justify-content: space-between;
+        height: 100%;
+    }
 }
