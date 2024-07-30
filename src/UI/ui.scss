@@ -1,1 +1,26 @@
 @use '../styles/partials/globals';
+
+.pageheader{
+    &__article {
+        justify-content: space-between;
+        height: 100%;
+        &__cart{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            
+            .cartcount{
+                margin-bottom: -20px;
+            }
+        }
+    }
+}
+
+.pagebody{
+    min-height: 400px;
+    
+    button {
+        width: 100px;
+        height: 50px;
+    }
+}
