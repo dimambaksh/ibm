@@ -1,4 +1,4 @@
-@use '../styles/partials/globals';
+@use '../styles/partials/globals' as *;
 
 .pageheader{
     &__article {
@@ -18,9 +18,31 @@
 
 .pagebody{
     min-height: 400px;
-    
+
     button {
         width: 100px;
         height: 50px;
+    }
+}
+
+.sidemenu{
+    width : $page-maxwidth;
+    height: 80vh;
+    top: 75px;
+    left: 0;
+    z-index: 100;
+    position: absolute;
+    background: rgba($primary-silver, 0.5);
+    
+    article{
+        margin: 0;
+    }
+
+    div{
+        margin-top: -24px;
+        width : 200px;
+        height : 200px;
+        background: rgba($primary-white, 1.0);
+        box-shadow: -1rem 1rem 1rem rgba($primary-black, 0.2);
     }
 }
