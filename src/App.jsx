@@ -14,9 +14,9 @@ function App() {
   return (
     <>
       <NavBarElement/>
+      {toggleItems[0].toggleState ? <SideMenuElement /> : ''}
       <BodyElement/>
       <FooterElement/>
-      {toggleItems[0].toggleState ? <SideMenuElement /> : ''}
     </>
   )
 }

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/NunitoSans_7pt-Regular.ttf");
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

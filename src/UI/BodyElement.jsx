@@ -2,6 +2,7 @@ import "./ui.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from '../Controller/cartSlice';
+import ProductDisplayElement from "./ProductDisplayElement";
 
 const BodyElement = () => {
     const dispatch = useDispatch();
@@ -20,8 +21,7 @@ const BodyElement = () => {
         <section className="pagebody">
             <article className="pagebody__article">
                 <h1>Body</h1>
-                <div><button onClick={() => handleShoppingCartAdd()}> + </button></div>
-                <div><button onClick={() => handleShoppingCartDelete()}> - </button></div>
+                <ProductDisplayElement />
             </article>
         </section>
     )
