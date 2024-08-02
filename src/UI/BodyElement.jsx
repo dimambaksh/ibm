@@ -1,27 +1,19 @@
 import "./ui.scss";
 
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from '../Controller/cartSlice';
 import ProductDisplayElement from "./ProductDisplayElement";
+import CartDisplayElement from "./CartDisplayElement";
+import CheckoutDisplayElement from "./CheckoutDisplayElement";
+import { useSelector } from "react-redux";
 
-const BodyElement = () => {
-    const dispatch = useDispatch();
-    const shoppingCartItems = useSelector((state) => state.shoppingCart);
-    console.log("Cart (body): "+shoppingCartItems[0].cartItems);
+const BodyElement = () => {   
+  const toggleItems = useSelector((state) => state.toggleStates);
+//   console.log("Product State change (body): "+toggleItems[1].toggleState);
+//   console.log("Checkout State change (body): "+toggleItems[2].toggleState);
 
-    const handleShoppingCartAdd = () => {
-        dispatch(addToCart(0));
-    };
-
-    const handleShoppingCartDelete = () => {
-        dispatch(removeFromCart(0));
-    };
-    
     return(
         <section className="pagebody">
             <article className="pagebody__article">
-                <h1>Body</h1>
-                <ProductDisplayElement />
+                {toggleItems[2].toggleState ?<CheckoutDisplayElement/> : toggleItems[1].toggleState ? <CartDisplayElement/> : <ProductDisplayElement />}
             </article>
         </section>
     )

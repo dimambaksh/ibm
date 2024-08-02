@@ -1,30 +1,45 @@
 @use '../styles/partials/globals' as *;
 
 .pageheader{
+    position : fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    height : 100px;
+
+    background-color: rgba($primary-white, 1.0);
     border: 1px solid $secondary-mercury;
 
     &__article {
         justify-content: space-between;
         height: 100%;
+        
+        &__right{
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+        }
+
         &__cart{
             display: flex;
             flex-flow: column;
             align-items: center;
             
             .cartcount{
+                z-index: 10;
                 margin-bottom: -20px;
+            }
+            .carttotal{
+                z-index: 10;
+                margin-top: -20px;
             }
         }
     }
 }
 
 .pagebody{
+    margin-top: 100px;
     min-height: 400px;
-
-    button {
-        width: 100px;
-        height: 50px;
-    }
 }
 
 .sidemenu{
@@ -51,6 +66,46 @@
     display: block;
     &__list{
         display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+
+        &__products{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        button {
+            width: 20px;
+            height: 20px;
+        }
+
+        &__image{
+            img{
+                width: 100px;
+                height: 100px;                    
+            }
+        }
+    }
+}
+
+.checkoutdisplay{
+    display: block;
+    &__list{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        
+        &__item{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        button {
+            width: 20px;
+            height: 20px;
+        }
 
         &__image{
             img{

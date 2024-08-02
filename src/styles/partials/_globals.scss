@@ -1,4 +1,8 @@
 @use "sass:map";
+@font-face {
+    font-family: "Nunito";
+    src:"./ibm/assets/NunitoSans_7pt-Regular-DlY7UlfN.ttf";
+}
 
 $font-stack: "Nunito, Roboto";
 $base-font-size-mobile: 13px; //body copy

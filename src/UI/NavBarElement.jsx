@@ -3,16 +3,33 @@ import shoppingCartIcon from '../assets/shopping.svg'
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAction } from '../Controller/toggleSlice';
+import { filterResults } from "../Controller/filterSlice";
 
 const NavBarElement = () => {
     const dispatch = useDispatch();
     
     const shoppingCartItems = useSelector((state) => state.shoppingCart);
+    const toggleItems = useSelector((state) => state.toggleStates);
+    const productListFilter = useSelector((state) => state.filterResult);
+    
+    const handleCategorySelect = () =>{
+        dispatch(toggleAction(3));        
+    }
 
+    const handleSearchProducts = (event) =>{
+        event.preventDefault();
+        event.stopPropagation();
+        dispatch(filterResults({list:"productlist",filterString:event.target.value}));
+    }
+    
     const handleToggleSideMenu = () => {
         dispatch(toggleAction(0));
     };
     
+    const handleToggleCartList = () => {
+        dispatch(toggleAction(1));
+    };
+
     return(
         <section className="pageheader">
             <article className="pageheader__article">
@@ -24,9 +41,35 @@ const NavBarElement = () => {
                 <div className="pageheader__article__title">
                     <h1>Nav Bar</h1>
                 </div>
-                <div className="pageheader__article__cart">
-                    <div className="cartcount">{shoppingCartItems[0].cartItems.length}</div>
-                    <div className="cartimage"><img src={shoppingCartIcon} alt="Shopping Cart" width="50px" height="50px"/></div>
+                <div className="pageheader__article__right">
+                    {toggleItems[2].toggleState ?
+                        <>
+                            Checkout {shoppingCartItems[0].cartSize} items.
+                        </>
+                        :
+                        <>
+                            <div className="pageheader__article__search">
+                                <input
+                                    type="search"
+                                    name="productListSearch"
+                                    onChange={(event) => handleSearchProducts(event)}
+                                    placeholder="Search..."
+                                    value={productListFilter["productlist"].filter}
+                                />
+                                <input type="checkbox" id={toggleItems[3]}
+                                        checked={toggleItems[3].toggleState}
+                                        onChange={() => handleCategorySelect()}
+                                /> <span>Show Category</span>
+                            </div>
+                            <div className="pageheader__article__cart">
+                                <div className="cartcount">{shoppingCartItems[0].cartSize}</div>
+                                <button onClick={() => handleToggleCartList()}>
+                                    <div className="cartimage"><img src={shoppingCartIcon} alt="Shopping Cart" width="50px" height="50px"/></div>
+                                </button>
+                                <div className="carttotal">$ {shoppingCartItems[0].cartTotal}</div>
+                            </div>
+                        </>
+                    }
                 </div>
             </article>
         </section>
