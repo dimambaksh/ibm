@@ -30,6 +30,7 @@ const NavBarElement = () => {
     const handleToggleCartList = () => {
         if (toggleItems["aboutUs"]){
             dispatch(toggleAction("aboutUs"));
+            dispatch(toggleAction("productList"));
         }
         dispatch(toggleAction("cartItems"));
     };
@@ -49,40 +50,31 @@ const NavBarElement = () => {
                         <i>Where Green Meets Serenity</i>
                     </div>
                 </div>
-                <div className="pageheader__article__right">
-                    {toggleItems["checkoutScreen"] ?
-                        <>
-                            Checkout {shoppingCartItems[0].cartSize} items.
-                        </>
-                        :
-                        <>
-                            {!toggleItems["aboutUs"] ?
-                                <div className="pageheader__article__search">
-                                    <input
-                                        type="search"
-                                        name="productListSearch"
-                                        onChange={(event) => handleSearchProducts(event)}
-                                        placeholder="Search..."
-                                        value={productListFilter["productlist"].filter}
-                                    />
-                                    <div className="pageheader__article__search__category">
-                                        <input type="checkbox" id="checkboxShowCategory"
-                                                checked={toggleItems["showCategory"]}
-                                                onChange={() => handleCategorySelect()}
-                                        /> <span>Show Category</span>
-                                    </div>
-                                </div> 
-                                :
-                                <></>
-                            }
-                            <div className="pageheader__article__cart">
-                                <div className="cartcount">{shoppingCartItems[0].cartSize}</div>
-                                <button onClick={() => handleToggleCartList()}>
-                                    <div className="cartimage"><img src={shoppingCartIcon} alt="Shopping Cart" width="50px" height="50px"/></div>
-                                </button>
-                                <div className="carttotal">$ {shoppingCartItems[0].cartTotal}</div>
-                            </div>
-                        </>
+                {(toggleItems["productList"] && !toggleItems["aboutUs"] && !toggleItems["cartItems"] && !toggleItems["checkoutScreen"]) &&
+                    <div className="pageheader__article__search">
+                        <input className="searchfield"
+                            type="search"
+                            name="productListSearch"
+                            onChange={(event) => handleSearchProducts(event)}
+                            placeholder="Search..."
+                            value={productListFilter["productlist"].filter}
+                        />
+                        <div className="pageheader__article__search__category">
+                            <input type="checkbox" id="checkboxShowCategory"
+                                    checked={toggleItems["showCategory"]}
+                                    onChange={() => handleCategorySelect()}
+                            /> <span>Show Category</span>
+                        </div>
+                    </div>
+                }
+                 
+                <div className="pageheader__article__cart">
+                    {!toggleItems["checkoutScreen"] &&
+                        <button onClick={() => handleToggleCartList()}>
+                            <div className="cartcount">{shoppingCartItems[0].cartSize}</div>
+                            <img src={shoppingCartIcon} alt="Shopping Cart"/>
+                            <div className="carttotal">$ {shoppingCartItems[0].cartTotal}</div>
+                        </button>
                     }
                 </div>
             </article>

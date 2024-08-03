@@ -41,10 +41,10 @@ const FooterElement = () => {
                     </div>
                     <div class="generalfooter__article__container__content">
                         <div class="generalfooter__article__container__content__subcontent generalfooter__article__container__content__social">
-                            <a href="https://www.instagram.com" target="_blank"><img src="./ibm/icon-instagram.png"/></a>
+                            <a href="https://www.instagram.com" target="_blank"><img src="./icon-instagram.png"/></a>
                         </div>
                         <div class="generalfooter__article__container__content__subcontent generalfooter__article__container__content__social">
-                            <a href="https://www.facebook.com" target="_blank"><img src="./ibm/icon-facebook.png"/></a>
+                            <a href="https://www.facebook.com" target="_blank"><img src="./icon-facebook.png"/></a>
                         </div>
                     </div>
                 </div>

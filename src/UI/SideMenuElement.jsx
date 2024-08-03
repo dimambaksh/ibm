@@ -21,10 +21,9 @@ function SideMenuElement(props){
         <div className="sidemenu">
             <div className="sidemenu__list">
                 <div className="sidemenu__list__item">
-                    <h1>Side Menu</h1>
                     <ul>
-                        <li>{toggleItems["aboutUs"]? "About Us" : <button onClick={() => showAboutUs()}>About Us</button>}</li>
-                        <li>{!toggleItems["aboutUs"]? "Products" :<button onClick={() => showProducts()}>Products</button>}</li>
+                        <li>{toggleItems["aboutUs"]? "About Us" : <a onClick={() => showAboutUs()}>About Us</a>}</li>
+                        <li>{!toggleItems["aboutUs"]? "Products" :<a onClick={() => showProducts()}>Products</a>}</li>
                     </ul>
                 </div>
             </div>

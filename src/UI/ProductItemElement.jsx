@@ -60,7 +60,7 @@ const ProductItemElement = (props) => {
                     <button onClick={() => handleProductListReduce(item.id)}> &ndash; </button>
                     {isCart &&
                         <button onClick={() => handleProductListDelete(item.id)}>
-                            <img className="productitem__adjuster__icon" width="12px" height="12px" src="./ibm/icon-delete.svg"></img> 
+                            <img className="productitem__adjuster__icon" width="12px" height="12px" src="./icon-delete.svg"></img> 
                         </button>
                     }
                 </div>
