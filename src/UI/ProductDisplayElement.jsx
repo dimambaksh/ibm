@@ -1,9 +1,10 @@
 import "./ui.scss";
 
+import ProductItemElement from "./ProductItemElement";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from '../Controller/cartSlice';
 import { increaseProductQuantity, reduceProductQuantity } from '../Controller/productSlice';
-import { filterResults } from "../Controller/filterSlice";
 import { toggleAction } from '../Controller/toggleSlice';
 
 const ProductDisplayElement = () => {
@@ -11,14 +12,12 @@ const ProductDisplayElement = () => {
     const productListItems = useSelector((state) => state.productList);
     const productListFilter = useSelector((state) => state.filterResult);
     const toggleItems = useSelector((state) => state.toggleStates);
-    // console.log(productListFilter);
-    // console.log(productListFilter["productlist"]);
-    console.log("Show : "+toggleItems[3].toggleState);
+    console.log("Page Loading : "+toggleItems["pageLoading"]);
 
     const checkData = () => {
         console.log("Is data loaded?");
         setProductData();
-        dispatch(toggleAction(4));
+        dispatch(toggleAction("pageLoading"));
     }
 
     const setProductData = () => {
@@ -56,49 +55,25 @@ const ProductDisplayElement = () => {
         return newProductList;
     }
 
-    const handleProductListAdd = (index) =>{
-        dispatch(increaseProductQuantity(index, productListItems[index]));
-        dispatch(addToCart(productListItems[index]));
-    }
-    
-    const handleProductListDelete = (index) =>{
-        dispatch(reduceProductQuantity(index));
-        dispatch(removeFromCart(productListItems[index]));
-    }
-
     return(
         <div className="productdisplay">
-            {toggleItems[4].toggleState ?
+            {toggleItems["pageLoading"] ?
                 <h1>Loading ... {checkData()}</h1> :
                 <>
-                    {toggleItems[3].toggleState ?
+                    {toggleItems["showCategory"] ?
                         <div className="productdisplay__list">
                         {
                             getCategoryData().map((key) => (
                                 <>
                                     <div className="productdisplay__list__category">
-                                        <h4>{key}</h4>
+                                        {key}
                                     </div>
                                     <div className="productdisplay__list__products">
                                     { 
                                         filterProductData().filter(
                                         (item) => (item.category == key)
                                         ).map( (item) => (
-                                                <div key={item.id}>
-                                                    <div className="productdisplay__list__image">
-                                                        <img src={item.image} alt={item.name} />
-                                                    </div>
-                                                    <div> {item.id} </div>
-                                                    <div> {item.name} </div>
-                                                    <div> {item.category} </div>
-                                                    <div> {item.description} </div>
-                                                    <div> ${item.cost} </div>
-                                                    <div>
-                                                        <button onClick={() => handleProductListAdd(item.id)}> &#43; </button>
-                                                        <span>{item.quantity}</span>
-                                                        <button onClick={() => handleProductListDelete(item.id)}> &ndash; </button>
-                                                    </div>
-                                                </div>
+                                            <ProductItemElement item={item} cart={false}/>
                                         ))
                                     }
                                     </div>
@@ -110,21 +85,7 @@ const ProductDisplayElement = () => {
                         <div className="productdisplay__list">
                             <div className="productdisplay__list__products">
                                 {filterProductData().map((item) => (
-                                    <div key={item.id}>
-                                        <div className="productdisplay__list__image">
-                                            <img src={item.image} alt={item.name} />
-                                        </div>
-                                        <div> {item.id} </div>
-                                        <div> {item.name} </div>
-                                        <div> {item.category} </div>
-                                        <div> {item.description} </div>
-                                        <div> ${item.cost} </div>
-                                        <div>
-                                            <button onClick={() => handleProductListAdd(item.id)}> &#43; </button>
-                                            <span>{item.quantity}</span>
-                                            <button onClick={() => handleProductListDelete(item.id)}> &ndash; </button>
-                                        </div>
-                                    </div>
+                                    <ProductItemElement item={item} cart={false}/>
                                 ))}
                             </div>
                         </div>

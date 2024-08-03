@@ -3,19 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const toggleSlice = createSlice({
   name: 'toggleStates',
-  initialState: [
-    {name: 'sideMenu', toggleState: false},
-    {name: 'cartItems', toggleState: false},
-    {name: 'checkoutScreen', toggleState: false},
-    {name: 'showCategory', toggleState: false},
-    {name: 'pageLoading', toggleState: true},
-  ],
+  initialState: {
+    'sideMenu':  false,
+    'cartItems': false,
+    'checkoutScreen': false,
+    'showCategory': false,
+    'pageLoading': true,
+    'landingPage': true,
+    'aboutUs': false,
+    'productList': true,
+  },
   reducers: {
     toggleAction: (state, action) => {
-      console.log("Toggle"+action.payload);
+      console.log("--- Toggle ---");
       console.log(action);
-      state[action.payload].toggleState = !state[action.payload].toggleState;
-      console.log("Current: "+state[3].toggleState);
+      state[action.payload] = !state[action.payload];
+      console.log("--------------");
     },
   },
 });

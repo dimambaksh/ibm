@@ -8,8 +8,8 @@ const CheckoutDisplayElement = () => {
     const shoppingCartItems = useSelector((state) => state.shoppingCart);
 
     const handleToggleCheckout = () => {
-        dispatch(toggleAction(2));
-        dispatch(toggleAction(1));
+        dispatch(toggleAction("checkoutScreen"));
+        dispatch(toggleAction("cartItems"));
     };
 
     return(

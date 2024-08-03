@@ -3,6 +3,7 @@ import "./ui.scss";
 import ProductDisplayElement from "./ProductDisplayElement";
 import CartDisplayElement from "./CartDisplayElement";
 import CheckoutDisplayElement from "./CheckoutDisplayElement";
+import AboutUsElement from "./AboutUsElement";
 import { useSelector } from "react-redux";
 
 const BodyElement = () => {   
@@ -13,7 +14,10 @@ const BodyElement = () => {
     return(
         <section className="pagebody">
             <article className="pagebody__article">
-                {toggleItems[2].toggleState ?<CheckoutDisplayElement/> : toggleItems[1].toggleState ? <CartDisplayElement/> : <ProductDisplayElement />}
+            {toggleItems["aboutUs"] ?
+                <AboutUsElement/>:
+                toggleItems["checkoutScreen"] ? <CheckoutDisplayElement/> : toggleItems["cartItems"] ? <CartDisplayElement/> : <ProductDisplayElement />
+            }
             </article>
         </section>
     )

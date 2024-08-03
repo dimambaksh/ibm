@@ -1,5 +1,7 @@
 import "./ui.scss";
 
+import ProductItemElement from "./ProductItemElement";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart, deleteFromCart } from '../Controller/cartSlice';
 import { increaseProductQuantity, reduceProductQuantity, deleteProductQuantity } from '../Controller/productSlice';
@@ -35,7 +37,7 @@ const CartDisplayElement = () => {
     }
    
     const handleToggleCheckout = () => {
-        dispatch(toggleAction(2));
+        dispatch(toggleAction("checkoutScreen"));
     };
 
 
@@ -45,26 +47,13 @@ const CartDisplayElement = () => {
             <div className="productdisplay__list">
                 <div className="productdisplay__list__products">
                     {Object.keys(shoppingCartItems[0].cartItems).map((key) => (
-                        <div key={key}>
-                            <div className="productdisplay__list__image">
-                                <img src={shoppingCartItems[0].cartItems[key].productItem.image} alt={shoppingCartItems[0].cartItems[key].productItem.name} />
-                            </div>
-                            <div> {shoppingCartItems[0].cartItems[key].productItem.id} </div>
-                            <div> {shoppingCartItems[0].cartItems[key].productItem.name} </div>
-                            <div> Total: ${shoppingCartItems[0].cartItems[key].productItem.cost * shoppingCartItems[0].cartItems[key].quantity} </div>
-                            <div>
-                                <button onClick={() => handleProductListAdd(key)}> &#43; </button> 
-                                <span>{shoppingCartItems[0].cartItems[key].quantity}</span> 
-                                <button onClick={() => handleProductListReduce(key)}> &ndash; </button>
-                                <button onClick={() => handleProductListDelete(key)}> del </button>
-                            </div>
-                        </div>
+                        <ProductItemElement item={shoppingCartItems[0].cartItems[key]} cart={true}/>
                     ))}
                 </div>
             </div>
-            <button onClick={() => handleToggleCheckout()}>
-                Checkout
-            </button>
+            <div className="productdisplay__checkout">
+                <button onClick={() => handleToggleCheckout()}>checkout <span className="productdisplay__checkout__total">($ {shoppingCartItems[0].cartTotal.toFixed(2)})</span></button>
+            </div>
         </div>
     )
 }

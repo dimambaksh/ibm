@@ -1,23 +1,12 @@
 @use "sass:map";
-@font-face {
-    font-family: "Nunito";
-    src:"./ibm/assets/NunitoSans_7pt-Regular-DlY7UlfN.ttf";
-}
 
-$font-stack: "Nunito, Roboto";
+$font-stack: "Nunito, san-serif";
 $base-font-size-mobile: 13px; //body copy
 $base-font-size-desktop: 14px; //body copy
 
 $screentypes: "desktop", "tablet", "mobile";
 $styleindices: "pageheader", "sectionheader", "subheader", "bodycopy",
   "footercopy", "labelsbuttons";
-$font-types: (
-  "pageheader": "#{$font-stack}",
-  "sectionheader": "#{$font-stack}",
-  "subheader": "#{$font-stack}",
-  "bodycopy": "#{$font-stack}",
-  "labelsbuttons": "#{$font-stack}",
-);
 
 //60px = 4.2875rem
 $font-weights-desktop: (
@@ -290,7 +279,6 @@ $secondary-alabaster: #fafafa; //Alabaster
 //iterating over the style lists and creating the media queries for Desktop + Tablet - min-width $tablet-screenlower (768px) and for mobile - max-width $mobile-screenmax (767px)
 @each $stylelabel in $styleindices {
   .style-#{$stylelabel} {
-    font-family: map.get($font-types, $stylelabel);
     font-weight: map.get($font-weights-mobile, $stylelabel);
     line-height: map.get($line-heights-mobile, $stylelabel);
     font-size: map.get($font-sizes-mobile, $stylelabel);
@@ -318,7 +306,6 @@ $secondary-alabaster: #fafafa; //Alabaster
 }
 
 * {
-  font-family: $font-stack;
   font-size: $base-font-size-mobile;
   @include desktoptablet {
     font-size: $base-font-size-desktop;
@@ -330,8 +317,7 @@ $secondary-alabaster: #fafafa; //Alabaster
 
 section {
   width: 100%;
-  height: 100%;
-  min-height: 48px;
+  flex-grow: 1;
   @include pagepad-container-top(1, 1);
 }
 
